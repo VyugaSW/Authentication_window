@@ -15,21 +15,70 @@
             <Setter Property="ItemsControl.FontWeight" Value="Bold"/>
         </Style>
 
+        <Style x:Key="StyleSizeAuhenticationWindows" BasedOn="{StaticResource StyleText}">
+            <Setter Property="ItemsControl.Margin" Value="10"/>
+            <Setter Property="ItemsControl.Height" Value="30"/>
+            <Setter Property="ItemsControl.Width" Value="256"/>
+            <Setter Property="Control.HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Control.VerticalContentAlignment" Value="Center"/>
+        </Style>
+        
+        
         <Style x:Key="StyleTextBlock" BasedOn="{StaticResource StyleText}">
             <Setter Property="ItemsControl.HorizontalAlignment" Value="Right"/>
             <Setter Property="ItemsControl.VerticalAlignment" Value="Center"/>
             <Setter Property="ItemsControl.Margin" Value="15"/>
         </Style>
 
-        <Style x:Key="StyleTextBox" BasedOn="{StaticResource StyleTextBlock}" TargetType="TextBox">
-            
+        <Style x:Key="StyleTextBox" BasedOn="{StaticResource StyleSizeAuhenticationWindows}" TargetType="TextBox">
+            <Setter Property="ItemsControl.Background" Value="White"/>
+            <Setter Property="ItemsControl.Foreground" Value="Black"/>
+            <Setter Property="ItemsControl.Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border x:Name="border"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="5">
+                            
+                            <ScrollViewer x:Name="PART_ContentHost"
+                                Focusable="false"
+                                HorizontalScrollBarVisibility="Hidden"
+                                VerticalScrollBarVisibility="Hidden"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsFocused" Value="true">
+                                <Setter Property="FontWeight" Value="Bold" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="StylePasswordBox" BasedOn="{StaticResource StyleSizeAuhenticationWindows}">
             <Setter Property="ItemsControl.Background" Value="White"/>
             <Setter Property="ItemsControl.Foreground" Value="Black"/>
             <Setter Property="ItemsControl.Margin" Value="10"/>
-            <Setter Property="ItemsControl.Height" Value="30"/>
-            <Setter Property="ItemsControl.Width" Value="256"/>
-            <Setter Property="HorizontalContentAlignment" Value="Left"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="ItemsControl.Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="PasswordBox">
+                        <Border x:Name="border"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="5">
+
+                            <ScrollViewer x:Name="PART_ContentHost"
+                                Focusable="false"
+                                HorizontalScrollBarVisibility="Hidden"
+                                VerticalScrollBarVisibility="Hidden"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsFocused" Value="true">
+                                <Setter Property="FontWeight" Value="Bold" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
 
         <Style x:Key="StyleCheckBox" BasedOn="{StaticResource StyleText}" TargetType="CheckBox">
